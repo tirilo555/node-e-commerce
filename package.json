@@ -1,0 +1,71 @@
+{
+  "name": "node-e-commerce",
+  "version": "1.0.0",
+  "description": "ECommerce application",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "rimraf dist && npx tsc",
+    "prestart": "npm run build",
+    "dev": "nodemon",
+    "prod": "node ./dist/index.js",
+    "preserve": "npm run build",
+    "serve": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\"",
+    "migration:generate": "npx typeorm-ts-node-commonjs migration:generate ./src/db/migrations/%npm_config_N%  -d ./src/db/data-source.ts",
+    "migration:create": "npx typeorm-ts-node-commonjs migration:create ./src/db/migrations/%npm_config_N%",
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/db/data-source.ts",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/db/data-source.ts"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "fast-safe-stringify": "^2.1.1",
+    "lodash": "^4.17.21",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.2.1",
+    "rimraf": "^5.0.5",
+    "routing-controllers": "^0.10.4",
+    "typeorm": "^0.3.20",
+    "typeorm-logger-adaptor": "^1.1.0",
+    "url-parse": "^1.5.10",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.14.202",
+    "@types/multer": "^1.4.11",
+    "@types/node": "^20.11.5",
+    "@types/url-parse": "^1.4.11",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tirilo555/node-e-commerce.git"
+  },
+  "keywords": [
+    "typescript",
+    "ecommerce",
+    "node",
+    "express"
+  ],
+  "author": "Taras Zahorskyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tirilo555/node-e-commerce/issues"
+  },
+  "homepage": "https://github.com/tirilo555/node-e-commerce#readme"
+}
