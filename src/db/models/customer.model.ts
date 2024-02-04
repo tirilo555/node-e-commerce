@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity({ name: 'users' })
-export default class UserModel {
+@Entity({ name: 'customers' })
+export default class CustomerModel {
   @PrimaryColumn({
     generated: 'increment',
     width: 11,
@@ -16,31 +16,24 @@ export default class UserModel {
     nullable: false,
     default: 0,
   })
-  user_group_id?: number;
+  customer_group_id!: number;
 
   @Column({
-    type: 'varchar',
-    width: 20,
+    type: 'integer',
+    width: 11,
+    unsigned: true,
     nullable: false,
-    default: '',
+    default: 0,
   })
-  username?: string;
+  store_id!: number;
 
   @Column({
-    type: 'varchar',
-    width: 255,
+    type: 'integer',
+    width: 11,
+    unsigned: true,
     nullable: false,
-    default: '',
   })
-  password!: string;
-
-  @Column({
-    type: 'varchar',
-    width: 32,
-    nullable: false,
-    default: '',
-  })
-  firstname!: string;
+  language_id!: number;
 
   @Column({
     type: 'varchar',
@@ -48,7 +41,15 @@ export default class UserModel {
     nullable: false,
     default: '',
   })
-  lastname!: string;
+  firstname?: string;
+
+  @Column({
+    type: 'varchar',
+    width: 32,
+    nullable: false,
+    default: '',
+  })
+  lastname?: string;
 
   @Column({
     type: 'varchar',
@@ -56,7 +57,15 @@ export default class UserModel {
     nullable: false,
     default: '',
   })
-  email!: string;
+  email?: string;
+
+  @Column({
+    type: 'varchar',
+    width: 32,
+    nullable: false,
+    default: '',
+  })
+  telephone?: string;
 
   @Column({
     type: 'varchar',
@@ -64,15 +73,22 @@ export default class UserModel {
     nullable: false,
     default: '',
   })
-  image?: string;
+  password?: string;
 
   @Column({
-    type: 'varchar',
-    width: 40,
+    type: 'text',
     nullable: false,
     default: '',
   })
-  code?: string;
+  custom_field?: string;
+
+  @Column({
+    type: 'tinyint',
+    width: 1,
+    nullable: false,
+    default: 0,
+  })
+  newsletter?: boolean;
 
   @Column({
     type: 'varchar',
@@ -91,17 +107,32 @@ export default class UserModel {
   status?: boolean;
 
   @Column({
+    type: 'tinyint',
+    width: 1,
+    nullable: false,
+    default: 0,
+  })
+  safe?: boolean;
+
+  @Column({
+    type: 'text',
+    nullable: false,
+    default: '',
+  })
+  token?: string;
+
+  @Column({
+    type: 'varchar',
+    width: 40,
+    nullable: false,
+    default: '',
+  })
+  code?: string;
+
+  @Column({
     type: 'datetime',
     precision: 3,
     default: () => 'CURRENT_TIMESTAMP(3)',
   })
   date_added?: string;
-
-  // 	'foreign' => [
-  // 		[
-  // 			'key'   => 'user_group_id',
-  // 			'table' => 'user_group',
-  // 			'field' => 'user_group_id'
-  // 		]
-  // 	],
 }

@@ -18,7 +18,19 @@ if (process.env.APP_DATABASE) {
   db.password = url.password;
   db.database = url.pathname.substring(1);
 }
+const jwtSecret = process.env.JWT_SECRET || 'secret_string';
+const env = process.env.NODE_ENV || 'development';
+const isProduction = env === 'production';
 
 export default {
   db,
+  isProduction,
+  // JWT config
+  jwt: {
+    algorithm: 'HS256',
+    accessTokenExpiryTime: 900, // 15 minutes
+    refreshTokenExpiryTime: 604800, // 1 week
+    secret: jwtSecret,
+  },
+  cookieSecret: process.env.COOKIE_SECRET,
 };
